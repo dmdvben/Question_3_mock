@@ -1,0 +1,8 @@
+# Secrets, such as API keys, stay on the droplet
+.env
+
+# Files that Python creates when it runs the code
+__pycache__/
+
+# Virtual environments
+.venv
