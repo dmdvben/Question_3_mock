@@ -13,11 +13,14 @@ weeks = [47, 48]
 rows = []
 for week in weeks:
     draw = get_draw(week)
-    # EACH ROW ALSO NEEDS THE COLUMN fetch_time: THE TIME OF THE REQUEST, WITHOUT MICROSECONDS
+    fetch_time = datetime.now().replace(microsecond=0)
     for customer_id in draw["set1"]:
-        rows.append({"week": week, "prize": 1, "customer_id": customer_id})
-    # THE WINNERS OF PRIZE 2 (THE NUMBERS IN set2) ARE MISSING
+        rows.append({"week": week, "prize": 1, "customer_id": customer_id,
+                     "fetch_time": fetch_time})
+    for customer_id in draw["set2"]:
+        rows.append({"week": week, "prize": 2, "customer_id": customer_id,
+                     "fetch_time": fetch_time})
 
-df = pd.DataFrame(rows)
+# HERE WE NEED A PANDAS DATA FRAME, df, WITH ONE ROW PER WINNER IN THE LIST rows
 df.to_csv("test_dataframe.csv", index=False)
 print(df)

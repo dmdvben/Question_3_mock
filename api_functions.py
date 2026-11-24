@@ -11,8 +11,8 @@ def get_draw(week):
     url = BASE_URL + "/getrand"
     # THE WEEK MUST BE SENT AS THE SEED OF THE DRAW. WHICH QUERY PARAMETER DOES /getrand READ?
     params = {}
-    # THE API WANTS THE KEY FROM .env IN A HEADER. ADD IT HERE
-    headers = {}
+    # The key from .env, in the header that the API reads
+    headers = {"authorization": os.environ["DRAW_API_KEY"]}
     response = requests.get(url, params=params, headers=headers)
     # THE BODY OF THE RESPONSE IS JSON. TURN IT INTO A DICTIONARY BEFORE IT IS RETURNED
     draw = response
